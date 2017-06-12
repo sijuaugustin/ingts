@@ -1,0 +1,57 @@
+before_script:
+  # Install ssh-agent if not already installed, it is required by Docker.
+  # (change apt-get to yum if you use a CentOS-based image)
+  - 'which ssh-agent || (sudo apt-get update -y && sudo apt-get install openssh-client -y )'
+  
+  - 'which rsync || (sudo apt-get update -y && sudo apt-get install rsync -y )'
+  
+  - 'which pdsh || (sudo apt-get update -y && sudo apt-get install pdsh -y )'
+  
+  - 'which pip || (sudo apt-get update -y && sudo apt-get install python-pip -y )'
+  
+  # Run ssh-agent (inside the build environment)
+  - eval $(ssh-agent -s)
+  
+  # Add the SSH key stored in SSH_KEY_DJANGO_SERVER variable to the agent store
+  - ssh-add <(echo "$SSH_KEY_DJANGO_SERVER")
+  - ssh-add <(echo "$SSH_KEY_TEST_SERVER")
+  - ssh-add <(echo "$SSH_KEY_RUNNER")
+  - mkdir -p ~/.ssh
+  - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+stages:
+  - deploy
+  - test
+
+production-deploy:
+  stage: deploy
+  image: ssh:latest
+  script:
+  - rsync -avzh -e ssh --exclude='.git/' ./src/insights_rest ubuntu@54.175.241.80:/cluster_100G_01/projects/django/insights --delete
+  
+  - pdsh -R ssh -w ubuntu@54.175.241.80 'cd /cluster_100G_01/projects/django/insights/insights_rest; docker-compose up -d; docker-compose restart; docker exec -i insightsrest_web_1 pip install -r requirements.txt'
+  only:
+  - master
+
+testing-deploy:
+  stage: deploy
+  image: ssh:latest
+  script:
+  - 'which screen || ( apt-get update -y && apt-get install screen -y )'
+  - pdsh -R ssh -w server@192.168.0.96 'mkdir -p ./development/projects/insights'
+  - rsync -avzh -e ssh --exclude='.git/' ./src/ server@192.168.0.96:./development/projects/insights --delete
+  - pdsh -R ssh -w server@192.168.0.96 'mkdir ./development/projects/insights/reports; cd ./development/projects/insights/test_server; pip install -r requirements.txt; screen -S insights_test-server -dm python manage.py runserver 0.0.0.0:8004'
+  only:
+  - testing
+
+testing-apitest:
+  stage: test
+  image: ssh:latest
+  script:
+  - git clone git@git.cognub.com:cognub-common/shared-libs.git
+  - export PYTHONPATH=$PYTHONPATH:$(pwd)/shared-libs
+  - pip install requests
+  - cd ./tests
+  - sh runtests.sh
+  - cd ../
+  only:
+  - testing

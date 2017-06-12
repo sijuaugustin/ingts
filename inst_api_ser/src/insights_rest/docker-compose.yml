@@ -1,0 +1,10 @@
+version: '2'
+services:
+  web:
+    build: .
+    image: insights_rest_web:api
+    command: ["uwsgi", "--uid", "1000", "--gid", "1000",  "--touch-reload", "/home/ubuntu/.uwsgi_reload_djv4.touch", "--check-static", "rest_framework_swagger", "--check-static", "rest_framework", "--wsgi-file", "insights_rest/wsgi.py", "--master", "--https", "0.0.0.0:8006,SSL/cert_chain.crt,SSL/propmix.key"]
+    volumes:
+      - .:/code
+    ports:
+      - "8006:8006"

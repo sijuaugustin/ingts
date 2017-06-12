@@ -1,0 +1,142 @@
+.bk {
+    background-image: url(../img/api.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.topPanel {
+    height: 55px;    
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.35);
+}
+.menuItem {
+    float: right;
+    color: white;
+    height: 54px;
+    width: auto;
+    text-align: center;
+    line-height: 54px;
+    font-size: 13px;
+    font-weight: 400;
+    text-transform: uppercase;
+    cursor: pointer;
+    padding: 0px;
+    margin-right: 39px;
+}
+.apiContent {
+    text-align: center;
+    height: auto;
+    font-size: 29px;
+    font-weight: 600;
+    margin-top: 136px;
+    color: #4db8ff;
+    padding: 0px;
+}
+.textBox1 {
+    position: absolute;
+    top: 236px;
+    left: 118px;
+    color: black;
+}
+.inputContent {
+    width: 63%;
+    height: 35px;
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    border-radius: 4px;
+    font-size: 18px;
+    color: #ffffff;
+    background-color: rgba(0, 0, 0, 0.43);
+}
+.inputContent:visited{
+
+}
+.textBox2 {
+    position: absolute;
+    top: 295px;
+    left: 118px;
+    color: black;
+}
+.exploreButton {
+    position: absolute;
+    top: 380px;
+    left: 134px;
+    border: 1px solid #fb922c;
+    width: 60%;
+    background-color: #fb922c;
+    height: 35px;
+    border-radius: 3px;
+    text-align: center;
+    line-height: 35px;
+    font-size: large;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: white;
+    cursor: pointer;
+}
+.logoPanel {
+    background-image: url(../img/cognub.png);
+    height: 230px;
+    background-repeat: no-repeat;
+    display: block;
+    top: 140px;
+    left: 20%;
+}
+.topPanel {
+    height: 55px;    
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.35);
+}
+.apiContent {
+    text-align: center;
+    height: auto;
+    font-size: 33px;
+    font-weight: 600;
+    margin-top: 136px;
+    color: #ffffff;
+    padding: 0px;
+}
+.textBox1 {
+    position: absolute;
+    top: 236px;
+    left: 118px;
+    color: black;
+}
+.inputContent {
+    width: 63%;
+    height: 35px;
+    border: 1px solid rgba(255, 255, 255, 0.66);
+    border-radius: 4px;
+    font-size: 18px;
+    color: #ffffff;
+    background-color: rgba(0, 0, 0, 0.43);
+}
+.inputContent:hover {} .textBox2 {
+    position: absolute;
+    top: 295px;
+    left: 118px;
+    color: black;
+}
+.exploreButton {
+    position: absolute;
+    top: 380px;
+    left: 134px;
+    border: 1px solid #42b574;
+    width: 60%;
+    background-color: #42b574;
+    height: 35px;
+    border-radius: 3px;
+    text-align: center;
+    line-height: 35px;
+    font-size: large;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: white;
+    cursor: pointer;
+}
+.logoPanel {
+    background-image: url(../img/cognub.png);
+    height: 250px;
+    background-repeat: no-repeat;
+    display: block;
+    top: 140px;
+    left: 20%;
+}

@@ -1,0 +1,8 @@
+Django==1.9.4
+pymongo
+statistics
+pyzipcode-cli
+enum
+pyyaml
+geopy
+oauthlib
