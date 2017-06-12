@@ -1,0 +1,38 @@
+before_script:
+  # Install ssh-agent if not already installed, it is required by Docker.
+  # (change apt-get to yum if you use a CentOS-based image)
+  - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+  
+  - 'which pdsh || ( apt-get update -y && apt-get install pdsh -y )'
+  
+  - 'which rsync || ( apt-get update -y && apt-get install rsync -y )'
+
+  # Run ssh-agent (inside the build environment)
+  - eval $(ssh-agent -s)
+
+  # Add the SSH key stored in SSH_PRIVATE_KEY variable to the agent store
+  - ssh-add <(echo "$SSH_KEY_AWS_MASTER")
+  - ssh-add <(echo "$SSH_KEY_TEST_SERVER")
+  - mkdir -p ~/.ssh
+  - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+deploy-cluster:
+  image: ssh:latest
+  script:
+  - rsync -avzh -e ssh --exclude='.git/' ./ ubuntu@hdp-master.propmix.io:/cluster/jobs/libs --delete
+  only:
+  - master
+deploy-django-server:
+  image: ssh:latest
+  script:
+  - rsync -avzh -e ssh --exclude='.git/' ./ ubuntu@insights.propmix.io:/cluster_100G_01/lib --delete
+  - pdsh -R ssh -w ubuntu@insights.propmix.io 'docker restart icmaserver_web_1'
+  only:
+  - master
+deploy-test-server:
+  image: ssh:latest
+  script:
+  - 'which screen || ( apt-get update -y && apt-get install screen -y )'
+  - pdsh -R ssh -w server@192.168.0.96 'mkdir -p ./development/projects/commonlib'
+  - rsync -avzh -e ssh --exclude='.git/' ./ server@192.168.0.96:./development/projects/commonlib --delete
+  only:
+  - testing
