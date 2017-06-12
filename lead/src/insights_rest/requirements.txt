@@ -1,0 +1,14 @@
+Django==1.9.4
+pymongo
+statistics
+pyzipcode-cli
+uwsgi
+numpy
+scipy
+pandas
+sklearn
+enum
+pyyaml
+geopy
+psycopg2
+oauthlib

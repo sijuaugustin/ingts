@@ -1,0 +1,15 @@
+Production:
+	client_id: Nf5wdmV7in8176f3YltowihEnMzrHwwE8x2qgDZi
+	client_secret: 9m0vVy10hlbs50HnEvqXOxdmCitNpiMRpS5y97TcyQu1yUeTgW91Gjo7HscEMgfrmi5zXfTThqKopEnrubrYlr1W4rdJKLN1EnjPI7g8r3Tam9AxaTHJBSEqS17xrmqm
+	x - {"access_token": "TwcmUAge5kEBQftqvYn4935f3n8S7v", "token_type": "Bearer", "expires_in": 36000, "refresh_token": "AoHH8XL3FcHcHX3GcaHMYfMgSb9OsN", "scope": "read"}
+	x - {"access_token": "GzKrZoFmqxD2dFGILuvSyzAOFaNFzz", "token_type": "Bearer", "expires_in": 36000, "refresh_token": "wAGH46ByfvUw1nlEuY8SEimzYgY0Od", "scope": "read"}
+	x - {"access_token": "S08aY0fPl6gI836Zx23U7dzOdjdQxv"}
+	x - {"access_token": "7yah6X850YDrpT8xdtEIJZOA6oAujz", "token_type": "Bearer", "expires_in": 36000, "refresh_token": "DinkUae6hOcrWqtxyuOmidAjx4hIlx", "scope": "read"}
+	x - {"access_token": "LikheBLg4klCUP4ug2TJelVmMOrU7Q", "token_type": "Bearer", "expires_in": 36000, "refresh_token": "GmwVO8kAFhXuowUhq1zpYZcewxt9Hh", "scope": "read"}
+	o - {"access_token": "q5RKRO4p9ublOdVy4j2rgg3OHeNOhe", "token_type": "Bearer", "expires_in": 15552000, "refresh_token": "q7S7E059buEKybuZ82LG7joSEYvvGu", "scope": "read"}
+	d - {"access_token": "ncY3iV454RWqflNROGfhcC0NrGTwOF", "token_type": "Bearer", "expires_in": 15552000, "refresh_token": "p5u8W5iIfufrn43vIPvy3F3kAnvokk", "scope": "read"}
+TestServer:
+	client_id: F2UHs1FHFckWAQ5NZ8gYnzRHkCbfr9RoQXYRogmL
+	client_secret: PSWq7deEZER4aQwbrcGv6WBQJCMrSo30j0UaoiVwE9kQzgP5wvwtwjGotfCYYJgl2jGy2dKQ6ZA5R2quXtVphVyss4WHz4ECoIKfuE19EtLqamKxdpzYfAY9grFXkqfV
+	o - {"access_token": "nkdY9cFsOUsutO2H0rNFdm3Gt1pqel", "token_type": "Bearer", "expires_in": 15552000, "refresh_token": "VtnwKWHgxDV2chrsnr2LEAwHZqlQ5A", "scope": "read"}
+

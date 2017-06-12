@@ -1,0 +1,29 @@
+iInsights v0.1:
+
+	A) Multitenancy:
+	
+		1) Map a new hostname to Server (Example insights.propmix.io)
+		2) Go to Django Shell:
+		
+				from customers.models import Client
+				tenant = Client(domain_url='insights.propmix.io', schema_name='insights',
+				name='insights',on_trial=True, paid_until='2017-12-30')
+				tenant.save()
+				
+		3) Done.
+	
+	B) Oauth2 Token Generation:
+		
+		1) Create auth User if there is None
+			from django.contrib.auth.models import User
+			user = User.objects.create_user('commonuser', password='*****')
+			user.save()
+		2) Goto http://tenant.server.io/o/applications (Example http://insights.propmix.io/o/applications)
+		3) Login with auth User credentials
+		4) Create Oauth Application with:
+				{Content Type: "Confidential", Authorization grant type: "Resource owner password-based"}
+		5) Create Token with:
+				curl -X POST -d "grant_type=password&username=<user_name>&password=<password>&scope=app.iprice.v3" -u"<client_id>:<client_secret>" http://insights.propmix.io:8000/o/token/
+		6) Request API with:
+				curl -H "Authorization: Bearer <your_access_token>" http://insights.propmix.io:8000/iprice/v3/trend/
+		7) Done.
