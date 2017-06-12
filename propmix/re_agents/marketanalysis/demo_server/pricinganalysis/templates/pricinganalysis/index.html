@@ -1,0 +1,89 @@
+ <!DOCTYPE html>
+<html>
+
+<head>
+  <script type="text/javascript" src="https://static.fusioncharts.com/code/latest/fusioncharts.js?cacheBust=8232"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+  {% load static %}
+  <link href="{% static 'pricinganalysis/css/style.css' %}" rel="stylesheet">
+</head>
+
+<body ng-app="pricing" ng-controller="pricingCtrl" ng-init="init()">
+  <!-- A simple Scroll Stacked Column 2D chart -->
+  
+  <div class="tab-content">
+    <div class="title">Pricing Analysis</div>       
+    <div class="dataChartWrapper">
+      <div class="pptyContainer">
+        <div class="row">
+          <div class="col-3">
+            <div class="context">Property Subtype</div>
+            <div class="content">
+              <div ng-dropdown-multiselect=""  options="propertyData" selected-model="propertyModel"></div>              
+            </div>
+          </div>
+
+          <div class="col-3">
+            <div class="context">Time Period</div>
+            <div class="content">
+              <select ng-model="TimePeriod">
+                <option value="last 1 Month">Last 1 month</option>
+                <option value="last 2 Month">Last 2 months</option>
+                <option value="last 3 Month">Last 3 months</option>
+                <option value="last 6 Month">Last 6 months</option>
+                <option value="last 12 Month">Last 12 months</option>          
+              </select>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="context">Zip Code</div>
+            <div class="content">
+              <input type="text" ng-model="zipSearch" ng-change="zipCurrent=null;" class="zipSearchTextBox" ng-click="zipFilterClick()">
+              <div class="row closeFilter" ng-class="showZipSource?'closeZipShow':null" ng-click="closeSourceFilter()"></div>
+              <div class="row currentSource" ng-class="zipCurrent?'currentSourceShow':null" ng-bind="zipCurrent"></div>
+              <div class="row zipSearch" ng-class="showZipSource?'showZip':null">
+                <div class="col-md-12 zipFilterText" ng-repeat="item in zipcodes|filter:zipSearch as zipFilter track by $index" ng-bind="item" ng-click="clickZipFilter(item)"></div>
+                <div class="col-md-12 zipFilterText" ng-if="zipFilter.length===0">No match found!</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="context">Price Type</div>
+            <div class="content">
+              <select ng-model="PriceType">
+                <option value="ClosePrice">Close Price</option>
+                <option value="ListPrice">List Price</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="context">list office name</div>
+            <div class="content">
+              <select ng-model="ListOfficeName">
+                <option value="TheMLSonline.com">TheMLSonline.com</option>
+              </select>
+              <!-- <input type="text" class="contentText" ng-model="ListOfficeName"> -->
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="submit" ng-click="submit()">Submit</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="total_price" class="tab-pane fade in active">
+    </div> 
+  </div>
+  {% load static %}
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+  <script type="text/javascript" src="{% static 'pricinganalysis/js/angularjs-dropdown-multiselect.js' %}"></script>
+  <script src="{% static 'pricinganalysis/js/highCharts.js' %}"></script>
+  <script src="{% static 'pricinganalysis/js/demo.js' %}"></script>
+</body>
+
+</html>

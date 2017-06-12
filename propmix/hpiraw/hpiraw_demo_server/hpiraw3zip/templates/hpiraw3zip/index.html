@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script type="text/javascript" src="https://static.fusioncharts.com/code/latest/fusioncharts.js?cacheBust=8232"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+  {% load static %}
+  <link href="{% static 'hpiraw3zip/css/style.css' %}" rel="stylesheet">
+</head>
+
+<body ng-app="hpi" ng-controller="hpiCtrl" ng-init="init()">
+  <!-- A simple Scroll Stacked Column 2D chart -->
+  
+  <div class="tab-content">
+    <div class="title">Zip Level HPI</div>      
+    <div id="hpiData" class="tab-pane fade in active">
+    </div>   
+    <div class="dataChartWrapper">
+      <div class="pptyContainer">
+      <div class="fromToPanel">
+        <div class="row">
+          <div class="col-3">            
+            <div class="fromfield">From</div>
+              <div class="selectWrapper">
+              <select ng-model="spanFrom" class="spanFieldFrom">
+                  <option ng-repeat="item in years" value="||item||">||item||</option>
+              </select>             
+              <div class="toField">To</div>
+               <select ng-model="spanTo" class="spanFieldTo">
+                  <option ng-repeat="item in years|filter: greaterThan(spanFrom)" value="||item||">||item||</option>  
+              </select>
+             </div>    
+            </div>
+            </div>
+          </div>              
+          <div class="col-3">
+            <div class="context">Zip Codes</div>
+            <div class="content" ng-model="ZipCodes">                  
+                <input type="text" class="contentText" maxlength="5">
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="submit" ng-click="submit()">Submit</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% load static %}
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+  <script type="text/javascript" src="{% static 'hpiraw3zip/js/angularjs-dropdown-multiselect.js' %}"></script>
+  <script src="{% static 'hpiraw3zip/js/demo.js' %}"></script>
+</body>
+
+</html>

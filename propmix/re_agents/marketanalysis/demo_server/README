@@ -1,0 +1,17 @@
+iInsights v0.1:
+
+	A) Oauth2 Token Generation:
+		
+		1) Create auth User if there is None
+			from django.contrib.auth.models import User
+			user = User.objects.create_user('appuser', password='*****')
+			user.save()
+		2) Goto http://tenant.server.io/o/applications (Example https://insights.propmix.io:8103/o/applications)
+		3) Login with auth User credentials
+		4) Create Oauth Application with:
+				{Content Type: "Confidential", Authorization grant type: "Resource owner password-based"}
+		5) Create Token with:
+				curl -X POST -d "grant_type=password&username=<user_name>&password=<password>&scope=app.iprice.v3" -u"<client_id>:<client_secret>" https://insights.propmix.io:8103/o/token/
+		6) Request Page with:
+				curl -H "Authorization: Bearer <your_access_token>" https://insights.propmix.io:8103/marketanalysis/agentperformance
+		7) Done.

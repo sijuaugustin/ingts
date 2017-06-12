@@ -1,0 +1,120 @@
+before_script:
+  # Install ssh-agent if not already installed, it is required by Docker.
+  # (change apt-get to yum if you use a CentOS-based image)
+  - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+  
+  - 'which rsync || ( apt-get update -y && apt-get install rsync -y )'
+  
+  - 'which pdsh || ( apt-get update -y && apt-get install pdsh -y )'
+  
+  # Run ssh-agent (inside the build environment)
+  - eval $(ssh-agent -s)
+  
+  # Add the SSH key stored in SSH_KEY_DJANGO_SERVER variable to the agent store
+  - ssh-add <(echo "$SSH_KEY_DJANGO_SERVER")
+  - ssh-add <(echo "$SSH_KEY_TEST_SERVER")
+  - mkdir -p ~/.ssh
+  - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+
+deploy-api-server-production:
+  image: ssh:latest
+  script:
+  - pdsh -R ssh -w ubuntu@54.175.241.80 'mkdir -p /cluster_100G_01/projects/django/insights/re_agents/marketanalysis'
+  - rsync -avzh -e ssh --exclude='.git/' ./propmix/re_agents/marketanalysis/api_server ubuntu@54.175.241.80:/cluster_100G_01/projects/django/insights/re_agents/marketanalysis --delete
+  - pdsh -R ssh -w ubuntu@54.175.241.80 'cd /cluster_100G_01/projects/django/insights/re_agents/marketanalysis/api_server; docker-compose up -d; docker-compose restart; docker exec -i re_agents_api_server pip install -r requirements.txt; docker-compose restart'
+  only:
+  - production-reagents-api-server
+
+
+deploy-demo-server-production:
+  image: ssh:latest
+  script:
+  - 'which screen || ( apt-get update -y && apt-get install screen -y )'
+  - pdsh -R ssh -w server@192.168.0.96 'mkdir -p ./development/projects/startups/propmix/re_agents/marketanalysis'
+  - rsync -avzh -e ssh --exclude='.git/' ./propmix/re_agents/marketanalysis/api_server server@192.168.0.96:./development/projects/startups/propmix/re_agents/marketanalysis --delete
+  - pdsh -R ssh -w server@192.168.0.96 'cd ./development/projects/startups/propmix/re_agents/marketanalysis/api_server; python manage.py migrate; screen -S re_agents_api_server -dm python manage.py runserver 0.0.0.0:8003'
+  only:
+  - testing-reagents-api-server
+
+deploy-demo-server-production:
+  image: ssh:latest
+  script:
+  - pdsh -R ssh -w ubuntu@54.175.241.80 'mkdir -p /cluster_100G_01/projects/django/insights/re_agents/marketanalysis'
+  - rsync -avzh -e ssh --exclude='.git/' ./propmix/re_agents/marketanalysis/demo_server ubuntu@54.175.241.80:/cluster_100G_01/projects/django/insights/re_agents/marketanalysis --delete
+  - pdsh -R ssh -w ubuntu@54.175.241.80 'cd /cluster_100G_01/projects/django/insights/re_agents/marketanalysis/demo_server; docker-compose up -d; docker-compose restart; docker exec -i re_agents_app_server pip install -r requirements.txt'
+  only:
+  - production-reagents-demo-server
+  
+deploy-demo-server-testing:
+  image: ssh:latest
+  script:
+  - 'which screen || ( apt-get update -y && apt-get install screen -y )'
+  - pdsh -R ssh -w server@192.168.0.96 'mkdir -p ./development/projects/startups/propmix/re_agents/marketanalysis'
+  - rsync -avzh -e ssh --exclude='.git/' ./propmix/re_agents/marketanalysis/demo_server server@192.168.0.96:./development/projects/startups/propmix/re_agents/marketanalysis --delete
+  - pdsh -R ssh -w server@192.168.0.96 'cd ./development/projects/startups/propmix/re_agents/marketanalysis/demo_server; python manage.py migrate; screen -S re_agents_demo_server -dm python manage.py runserver 0.0.0.0:8005'
+  only:
+  - testing-reagents-demo-server
+  
+deploy-hpiraw-api-server-testing:
+  image: ssh:latest
+  script:
+  - 'which screen || ( apt-get update -y && apt-get install screen -y )'
+  - pdsh -R ssh -w server@192.168.0.96 'mkdir -p ./development/projects/startups/propmix/hpiraw'
+  - rsync -avzh -e ssh --exclude='.git/' ./propmix/hpiraw/hpiraw_api_server server@192.168.0.96:./development/projects/startups/propmix/hpiraw --delete
+  - pdsh -R ssh -w server@192.168.0.96 'cd ./development/projects/startups/propmix/hpiraw/hpiraw_api_server; python manage.py migrate; screen -S hpiraw_api_server -dm python manage.py runserver 0.0.0.0:8006'
+  only:
+  - testing-hpiraw-api-server
+  
+deploy-hpiraw-api-server-production:
+  image: ssh:latest
+  script:
+  - pdsh -R ssh -w ubuntu@54.175.241.80 'mkdir -p /cluster_100G_01/projects/django/insights/hpi/hpiraw'
+  - rsync -avzh -e ssh --exclude='.git/' ./propmix/hpiraw/hpiraw_api_server ubuntu@54.175.241.80:/cluster_100G_01/projects/django/insights/hpi/hpiraw --delete
+  - pdsh -R ssh -w ubuntu@54.175.241.80 'cd /cluster_100G_01/projects/django/insights/hpi/hpiraw/hpiraw_api_server; docker-compose up -d; docker-compose restart; docker exec -i hpiraw_api_server pip install -r requirements.txt'
+  only:
+  - production-hpiraw-api-server
+  
+deploy-hpiraw-api-server-testing:
+  image: ssh:latest
+  script:
+  - 'which screen || ( apt-get update -y && apt-get install screen -y )'
+  - pdsh -R ssh -w server@192.168.0.96 'mkdir -p ./development/projects/startups/propmix/hpiraw'
+  - rsync -avzh -e ssh --exclude='.git/' ./propmix/hpiraw/hpiraw_demo_server server@192.168.0.96:./development/projects/startups/propmix/hpiraw --delete
+  - pdsh -R ssh -w server@192.168.0.96 'cd ./development/projects/startups/propmix/hpiraw/hpiraw_demo_server; python manage.py migrate; screen -S hpiraw_demo_server -dm python manage.py runserver 0.0.0.0:8007'
+  only:
+  - testing-hpiraw-demo-server
+  
+deploy-hpiraw-demo-server-production:
+  image: ssh:latest
+  script:
+  - pdsh -R ssh -w ubuntu@54.175.241.80 'mkdir -p /cluster_100G_01/projects/django/insights/hpi/hpiraw'
+  - rsync -avzh -e ssh --exclude='.git/' ./propmix/hpiraw/hpiraw_demo_server ubuntu@54.175.241.80:/cluster_100G_01/projects/django/insights/hpi/hpiraw --delete
+  - pdsh -R ssh -w ubuntu@54.175.241.80 'cd /cluster_100G_01/projects/django/insights/hpi/hpiraw/hpiraw_demo_server; docker-compose up -d; docker-compose restart; docker exec -i hpiraw_demo_server pip install -r requirements.txt'
+  only:
+  - production-hpiraw-demo-server
+deploy-dom-api-server-testing:
+  image: ssh:latest
+  script:
+  - 'which screen || ( apt-get update -y && apt-get install screen -y )'
+  - pdsh -R ssh -w server@192.168.0.96 'mkdir -p ./development/projects/startups/propmix/dom/dom_api_server'
+  - rsync -avzh -e ssh --exclude='.git/' ./propmix/dom/dom_api_server server@192.168.0.96:./development/projects/startups/propmix/dom --delete
+  - pdsh -R ssh -w server@192.168.0.96 'cd ./development/projects/startups/propmix/dom/dom_api_server; python manage.py migrate; screen -S dom_api_server -dm python manage.py runserver 0.0.0.0:8008'
+  only:
+  - testing-dom-api-server
+deploy-dom-api-server-production:
+  image: ssh:latest
+  script:
+  - pdsh -R ssh -w ubuntu@54.175.241.80 'mkdir -p /cluster_100G_01/projects/django/insights/dom'
+  - rsync -avzh -e ssh --exclude='.git/' ./propmix/dom/dom_api_server ubuntu@54.175.241.80:/cluster_100G_01/projects/django/insights/dom --delete
+  - pdsh -R ssh -w ubuntu@54.175.241.80 'cd /cluster_100G_01/projects/django/insights/dom/dom_api_server; docker-compose up -d; docker-compose restart'
+  only:
+  - production-dom-api-server
+deploy-dom-demo-server-testing:
+  image: ssh:latest
+  script:
+  - 'which screen || ( apt-get update -y && apt-get install screen -y )'
+  - pdsh -R ssh -w server@192.168.0.96 'mkdir -p ./development/projects/startups/propmix/dom'
+  - rsync -avzh -e ssh --exclude='.git/' ./propmix/dom/dom_demo_server server@192.168.0.96:./development/projects/startups/propmix/dom --delete
+  - pdsh -R ssh -w server@192.168.0.96 'cd ./development/projects/startups/propmix/dom/dom_demo_server; python manage.py migrate; screen -S dom_demo_server -dm python manage.py runserver 0.0.0.0:8009'
+  only:
+  - testing-dom-demo-server

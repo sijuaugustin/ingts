@@ -1,0 +1,21 @@
+body {
+		 background-image: url(../img/Layer-5.jpg);
+		 /* background-size: 100%; */
+		 /* background-position: center; */
+		 height:auto;
+		 min-height:100%;
+		 background-repeat: no-repeat;
+		 background-color: rgba(233, 30, 99, 0.72);
+	}
+.agentMarketPerformance{
+	background-color: rgba(233, 30, 99, 0.41);
+	height:auto;
+  min-height:100%;
+}
+button {
+    margin-top: 11px;
+    padding: 2px;
+    border-radius: 11px;
+    width: 7%;
+    margin-left: 20px;
+}

@@ -1,0 +1,363 @@
+body {
+        /* background-image: url(../img/Layer-5.jpg); */
+        /* background-size: 100%; */
+        /* background-position: center; */
+        height:auto;
+        min-height:100%;
+        background-repeat: no-repeat;
+    }
+     .raphael-group-128-creditgroup{
+        display:none;
+     }
+     #total_price {
+        width: 100%;
+        color: black;
+        padding-top: 30px;
+        background-color: rgb(255, 255, 255);
+        float: left;
+        height: 450px;
+        position: relative;
+    }
+    #average_price{
+        width: 100%;
+        box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.39);
+        color: black;
+        border-radius: 4px;
+        padding-top: 30px;
+        padding-bottom: 30px;
+        background-color: rgb(255, 255, 255);
+        float: left;
+        height: 450px;
+        position: absolute;
+    }
+    .raphael-group-82-creditgroup{
+        display:none;
+    }
+    .raphael-group-166-creditgroup{
+        display:none;
+    }
+    .highcharts-credits{
+        display:none;
+    }
+    .raphael-group-176-creditgroup{
+        display:none;
+    }
+    
+   #list_price_share{
+        width: calc(50% - 20px);
+        float: left;
+        height: calc(100% - 40px);
+        margin-left: 15px;
+        margin-top: 20px;
+        border-radius: 0px;
+    }
+     #sold_price_share{
+    width: calc(50% - 20px);
+    float: left;
+    height: calc(100% - 40px);
+    margin-left: 10px;
+    margin-top: 20px;
+    border-radius: 0px;
+    }
+     .container{
+        width: calc(25% - -9px);
+        height: 241px;
+        box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.5);
+        border-radius: 10px;
+        margin-top: 30px;
+        background-color: #292929;
+        font-family: roboto;
+        color: #fff;
+        float: right;
+        margin-left: 18px;
+        overflow: hidden;
+    }
+    .col-12 {
+        width: 20%;
+        float: left;
+        margin-bottom: 12px;
+        margin-left: 5px;
+        font-size: 13px;
+        padding: 5px;
+    }
+    .col-10 {    
+	margin-bottom: 12px;    
+	margin-left: 5px;    
+	font-size: 13px;    
+	padding: 5px;    
+	float: left;
+    
+	}
+        .raphael-group-113-columns rect {
+            width: 24px;
+        }
+        .raphael-group-98-columns rect {
+            width: 24px;
+        }
+        .raphael-group-125-creditgroup{
+            display:none;
+        }
+        .title {
+            font-size: 30px;
+            text-align: center;
+            margin-top: 25px;
+            font-weight: 300;
+            padding: 10px;
+        }
+
+        .subtitle {
+            font-size: 22px;
+            color: #fff;
+            
+            text-align: center;
+            font-weight: 300;
+        }
+        .mlsTitle {
+    font-size: 20px;
+    color: #fff;
+   
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-transform: capitalize;
+    font-weight: 300;
+    float: left;
+    width: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    position: relative;
+    padding: 0px 15px;
+    line-height: 35px;
+    height: 35px;
+}
+.col-3 {
+    float: left;
+    width: calc(100% - 0px);
+    padding: 0px 0px 0px 15px;
+    font-size: 14px;
+    font-weight: 300;
+    /* margin-bottom: 18px; */
+    text-align: left;
+}
+
+.row {
+    width: 100%;
+    float: left;
+}
+.context {
+    float: left;
+    padding: 0px;
+    font-weight: 600;
+    line-height: 20px;
+    color: #fff;
+    width: 52%;
+    margin-top: 10px;
+}
+
+.content {
+    float: left;
+    line-height: 20px;
+    font-size: 13px;
+    width: 40%;
+    margin-left: 15px;
+    color: #000;
+    margin-top: 10px;
+}
+.mlsContainer {
+    float: left;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    width: calc(100% - 30px);
+    margin-left: 15px;
+    padding-bottom: 15px;
+    margin-top: 30px;
+}
+.pptyContainer {
+    float: left;
+    width: calc(100% - 36px);
+    margin-left: 15px;
+    margin-top: 30px;
+}
+.raphael-group-7-background>rect {
+    fill: rgba(152, 36, 36, 0) !important;
+}
+
+svg#raphael-paper-5 {
+    background-color: rgba(255, 255, 255, 0) !important;
+}
+.raphael-group-8-canvas rect {
+    fill: rgba(255, 255, 255, 0) !important;
+}
+.raphael-group-123-creditgroup tspan {
+    display: none;
+}
+.content select{
+    border-radius:5px;
+    width: 125px;
+}
+.submit{
+    margin-top: 20px;
+    text-align: center;
+    color: #fff;
+    /* width: 50%; */
+    background-color: rgb(235, 15, 67);
+    border-radius: 5px;
+    height: auto;
+    padding: 10px;
+    cursor: pointer;
+    position: relative;
+    left: 0;
+    margin: auto;
+    display: block;
+    top: 20px;
+}
+a {
+    color: #fff;
+    text-decoration: none;
+}
+#average_price g.highcharts-legend-item.highcharts-column-series {
+    display: none;
+}
+div#average_price:after {
+    content: "Agent Names";
+    position: relative;
+    bottom: 5px;
+    font-size: 13px;
+    color: #82afe0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+#average_price g.highcharts-legend{
+    display: none;
+}
+.fusioncharts-container>svg>g>text>tspan{
+    display: none;
+}
+
+/*new design*/
+.nav-tabs li.active, .nav-tabs li a:focus, .nav-tabs li a:hover {color: #EB0F43;/* border-bottom: 3px solid; */}
+.nav-tabs li a {color: #000;padding: 25px 17px;display: block;text-align: center;text-decoration: none;font-weight: 600;border-bottom: 3px solid transparent;text-transform: uppercase;}
+.nav-tabs li a:after {   width: 1px; height: 72px;  position: absolute; background: #fff; top: 0;  right: -1px;}
+.nav-tabs li a:after {    content: '';}
+body .nav-tabs li.active a, body .nav-tabs li a:focus, .nav-tabs li a:hover {
+    color: #EB0F43;
+    border-bottom: 3px solid #EB0F43;
+    }
+.nav-tabs{background: #f2f2f2;border-bottom: 0;width: 100%;height: 80%;display: block;}
+
+.nav-tabs>li>a{ margin-right: 0; border-radius: 0;}
+
+.nav-tabs li a:hover {
+color: #EB0F43;
+border-bottom: 3px solid;
+}
+#average_price g.highcharts-legend{
+    display: none;
+}
+.fusioncharts-container>svg>g>text>tspan{
+    display: none;
+}
+#average_price rect.highcharts-point {
+    fill: #2ecc71;
+}
+#average_price rect.highcharts-point.highcharts-negative {
+    fill: #e74c3c;
+}
+.activeListing {
+    margin-top: 5px;
+    position: absolute;
+    right: 0px;
+    width: 200px;
+    margin-top: 25px;
+    opacity: 0;
+    visibility: hidden;
+    transition: 300ms;
+    background-color: #fff;
+    z-index: 3;
+}
+
+input[type="checkbox"] {
+    margin-left: 18px;
+    margin-top: 10px;
+    float: right;
+    margin-right: 3px;
+    outline: none !important;
+}
+.activeListing .context {
+    margin-top: 0px;
+    color: orange;
+    width: auto;
+    float: right;
+    line-height: 33px;
+    font-weight: 300;
+    font-size: 13px;
+    padding: 0px 20px 0px 5px;
+}
+#highcharts-wkce6go-0{
+    width:950px;
+}
+ #list_price_share .highcharts-container {
+  border: 1px solid rgba(0, 0, 0, 0.17);
+  border-radius: 5px;
+}
+
+#sold_price_share .highcharts-container {
+  border: 1px solid rgba(0, 0, 0, 0.17);
+  border-radius: 5px;
+  width: 464px;
+  height: 450px;
+}
+.activeListing.activeListingFirst {
+    opacity: 1;
+    visibility: visible;
+}
+
+.activeListing.activeListingThird {
+    opacity: 1;
+    visibility: visible;
+    left: calc(50% - 210px);
+    margin-top: 50px;
+}
+.chartContainer {
+    width: 70%;
+    height: 450px;
+    float: left;
+    position: relative;
+    box-sizing: border-box;
+    margin-top: 30px;
+    margin-left: 30px;
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.39);
+    border-radius: 4px;
+    overflow: hidden;
+}
+.chartLoader {
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    background-image: url(../img/spinner.gif);
+    z-index: 4;
+    position: relative;
+    background-size: 300px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+div#price_list {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+.fade.in {
+    z-index: 2;
+}
+
+@media only screen and (max-width: 768px){
+    body {padding: 0 10px;}
+    .nav-tabs>li,
+    .chartContainer,
+    .container {width: 100%;margin-left: 0;}
+    .chartContainer {margin-bottom: 30px;}
+    .nav-tabs>li a {padding: 10px 15px;}
+    .content {color: #fff;}
+    #list_price_share,
+    #sold_price_share {width: 100%;height: 50%;margin-top: 0;margin-left: 0;}   
+    .activeListing.activeListingThird {margin-top: 25px;background: none;left: 15%;} 
+}

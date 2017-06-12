@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script type="text/javascript" src="https://static.fusioncharts.com/code/latest/fusioncharts.js?cacheBust=8232"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+  {% load static %}
+  <link href="{% static 'hpiraw/css/style.css' %}" rel="stylesheet">
+</head>
+
+<body ng-app="hpi" ng-controller="hpiCtrl" ng-init="init()">
+  <!-- A simple Scroll Stacked Column 2D chart -->
+  
+  <div class="tab-content">
+    <div class="title">HPI Data</div>      
+    <div id="hpiData" class="tab-pane fade in active">
+    </div>   
+    <div class="dataChartWrapper">
+      <div class="pptyContainer">
+      <div class="fromToPanel">
+        <div class="row">
+          <div class="col-3">            
+            <div class="fromfield">From</div>
+              <div class="selectWrapper">
+              <select ng-model="spanFrom" class="spanFieldFrom">
+                  <option ng-repeat="item in years" value="||item||">||item||</option>
+              </select>             
+              <div class="toField">To</div>
+               <select ng-model="spanTo" cllass="spanFieldTo">
+                  <option ng-repeat="item in years|filter: greaterThan(spanFrom)" value="||item||">||item||</option>  
+              </select>
+             </div>    
+            </div>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="context">Location</div>
+            <div class="content">
+             <input type="text" ng-model="locationSearch" ng-change="currentLocation=null;" class="locationSearchTextBox" ng-click="locationFilterOpen()" ng-blur="locationFilterClose()">
+              <div class="row closeFilter" ng-class="showLocationSource?'closeLocationShow':null" ng-click="closeSourceFilter()">X</div>
+              <div class="row currentSource" ng-class="currentLocation?'currentSourceShow':null" ng-bind="currentLocation"></div>
+              <div class="row locationSearch" ng-class="showLocationSource?'showLocation':null">
+                <div class="col-md-12 locationFilterText" ng-repeat="item in locations|filter:locationSearch as locationFilter track by $index" ng-bind="item" ng-click="clickLocationFilter(item)"></div>
+                <div class="col-md-12 locationFilterText" ng-if="locationFilter.length===0">No match found!</div>
+              </div>
+            </div>
+          </div>        
+          <div class="col-3">
+            <div class="context">Frequency</div>
+            <div class="content">
+              <select ng-model="Frequency">
+                <option value="monthly">monthly</option>
+                 <option value="quarterly">quarterly</option>
+              </select>
+              <!-- <input type="text" class="contentText" ng-model="ListOfficeName"> -->
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="submit" ng-click="submit()">Submit</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% load static %}
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+  <script type="text/javascript" src="{% static 'hpiraw/js/angularjs-dropdown-multiselect.js' %}"></script>
+  <script src="{% static 'hpiraw/js/demo.js' %}"></script>
+</body>
+
+</html>

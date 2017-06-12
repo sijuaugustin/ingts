@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+ 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+  {% load static %}
+  <link href="{% static 'css/style.css' %}" rel="stylesheet">
+</head>
+
+<body ng-app="marketShare" ng-controller="marketShareCtrl" ng-init="init()">
+  <!-- A simple Scroll Stacked Column 2D chart -->
+ 
+ <div class="tab-content">
+    <div class="title">Agent Market Performance Analysis</div>
+      <ul class="nav nav-tabs">
+    <li class="active" ng-click="enableActiveListing='activeListingFirst'"><a data-toggle="tab" href="#total_price">Total Price</a></li>
+    <li ng-click="enableActiveListing=null"><a data-toggle="tab" href="#average_price">Price Movements</a></li>
+    <li ng-click="enableActiveListing='activeListingThird'"><a data-toggle="tab" href="#price_list">Market Share </a></li>
+    </ul>
+  </div>
+  <div class="container">
+    <div class="pptyContainer">
+      <div class="row">
+        <div class="col-3">
+          <div class="context">Property Subtype</div>
+          <div class="content">
+            <select ng-model="propertySubType">
+             <option value="All">All</option>
+              <option value="Single Family Residence">Single Family Residence</option>
+              <option value="Condominium">Condominium</option>
+              <option value="Townhouse">Townhouse</option>            
+            </select>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="context">Months Back</div>
+          <div class="content">
+            <select ng-model="monthsBack">
+              <option value="1M">1M</option>
+              <option value="3M">3M</option>
+              <option value="6M">6M</option>
+              <option value="12M">12M</option>
+              <option value="18M">18M</option>           
+            </select>
+          </div> 
+          <div class="context">State</div>
+          <div class="content">
+            <select ng-model="state">
+              <option value="All">All</option>                    
+            </select>
+          </div>  
+          <div class="context">List Office Name</div>
+          <div class="content">
+            <select ng-model="listOfficeName">
+              <option value="TheMLSonline.com">TheMLSonline.com</option>      
+            </select>
+          </div>             
+          <div class="col-3">
+            <div class="submit" ng-click="submit()">Submit</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="chartContainer">
+    <div id="total_price" class="tab-pane fade in active"></div>
+    <div id="average_price" class="tab-pane fade"></div>
+    <div id="price_list" class="tab-pane fade">
+      <div id="list_price_share"></div>
+      <div id="sold_price_share"></div>
+    </div>
+    <div class="chartLoader" ng-if="loading"></div>
+    <div class=" activeListing" ng-class="enableActiveListing">                   
+      <div class="context">Include Active Listing</div> 
+      <input type="checkbox" ng-model="activeListingFlag" ng-change="activeListFlagChange()">
+    </div>
+  </div>
+
+
+  {% load static %}
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+  <script type="text/javascript">
+    var TotalPriceChartData = [];
+  </script>
+  <script src="{% static 'js/highCharts.js' %}"></script>
+  <script src="{% static 'js/demo.js' %}"></script>
+</body>
+
+</html>

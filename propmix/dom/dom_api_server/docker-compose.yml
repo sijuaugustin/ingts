@@ -1,0 +1,15 @@
+version: '2'
+services:
+  web:
+    build: .
+    image: dom_api:api
+    environment:
+      - PYTHONPATH=/pylib:/code
+    command: ["bash", "-c", "pip install -r requirements.txt && python manage.py migrate && uwsgi --uid 1000 --gid 1000 --check-static rest_framework_swagger --check-static rest_framework --wsgi-file server/wsgi.py --master --https 0.0.0.0:8106,SSL/cert_chain.crt,SSL/propmix.key"]
+    volumes:
+      - .:/code
+      - /cluster_100G_01/lib:/pylib
+    ports:
+      - "8106:8106"
+    container_name: dom_api_server
+    

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script type="text/javascript" src="https://static.fusioncharts.com/code/latest/fusioncharts.js?cacheBust=8232"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+   {% load static %}
+  <link href="{% static 'dom/css/style.css' %}" rel="stylesheet">
+</head>
+
+<body ng-app="domData" ng-controller="domDataCtrl" ng-init="init()">
+  <!-- A simple Scroll Stacked Column 2D chart -->
+  
+  <div class="tab-content">
+    <div class="title">Days on Market</div>    
+    <div class="dataChartWrapper">
+      <div class="pptyContainer">
+      <div class="fromToPanel">
+        <div class="row">
+           <div class="col-3">
+            <div class="context">Time Period</div>
+            <div class="content">
+              <select ng-model="TimePeriod">
+                <option value="last 3 Month">Last  3 month</option>
+                <option value="last 9 Month">Last  9 months</option>
+                <option value="last 12 Month">Last 12 months</option>
+                <option value="last 15 Month">Last 15 months</option>
+                <option value="last 24 Month">Last 24 months</option>          
+              </select>
+            </div>
+          </div>
+            </div>
+          </div>                
+         <div class="col-3">
+            <div class="context">Zip Codes</div>
+            <div class="content" ng-model="ZipCodes">
+                <input type="text" class="contentText" maxlength="5">
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="context">Days</div>
+            <div class="content" ng-model="days">
+                <input type="text" class="contentText">
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="submit" ng-click="submit()">Submit</div>
+          </div>
+        </div>
+      </div>
+    </div>  
+    <div id="domData" class="tab-pane fade in active">
+    </div>   
+
+  </div>
+ 
+ 
+  {% load static %}
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+  <script type="text/javascript">
+    var TotalPriceChartData = [];
+  </script>
+  <script src="{% static 'dom/js/highCharts.js' %}"></script>
+  <script src="{% static 'dom/js/demo.js' %}"></script>
+</body>
+
+</html>

@@ -1,0 +1,84 @@
+ <!DOCTYPE html>
+<html>
+
+<head>
+  <script type="text/javascript" src="https://static.fusioncharts.com/code/latest/fusioncharts.js?cacheBust=8232"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+  {% load static %}
+  <link href="{% static 'marketgrowth/css/style.css' %}" rel="stylesheet">
+</head>
+
+<body ng-app="marketGrowth" ng-controller="marketGrowthCtrl" ng-init="init()">
+  <!-- A simple Scroll Stacked Column 2D chart -->
+  
+  <div class="tab-content">
+    <div class="title">Market Growth</div>     
+    <div class="container">
+      <div class="pptyContainer">
+        <div class="row">
+          <div class="col-3">
+            <div class="context">Property Subtype</div>
+            <div class="content">             
+             <select ng-model="propertySubType">
+               <option value="All">All</option>                  
+              </select> 
+            </div>
+          </div>
+
+          <div class="col-3">
+            <div class="context">Time Period</div>
+            <div class="content">
+              <select ng-model="TimePeriod">                
+                <option value="Year over Year">Year over Year</option>
+                <option value="Quarter over Quarter">Quarter over Quarter</option>
+                <option value="Same Quarter Previous and Current Year">Same Quarter Previous and Current Year</option>
+                <option value="Same Month Previous and Current Year">Same Month Previous and Current Year</option>       
+              </select>
+            </div>
+          </div>        
+          <div class="col-3">
+            <div class="context">State</div>
+            <div class="content">
+              <select ng-model="state">
+                 <option value="All">All</option>
+              </select>
+            </div>
+          </div>
+             <div class="col-3">
+            <div class="context">Price Type</div>
+            <div class="content">
+              <select ng-model="PriceType">
+                <option value="ClosePrice">Close Price</option>
+                <option value="ListPrice">List Price</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="context">list office name</div>
+            <div class="content">
+              <select ng-model="ListOfficeName">
+                <option value="TheMLSonline.com">TheMLSonline.com</option>
+              </select>
+              <!-- <input type="text" class="contentText" ng-model="ListOfficeName"> -->
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="submit" ng-click="submit()">Submit</div>
+          </div>
+        </div>
+      </div>
+    </div>
+     <div id="marketgrowth" class="tab-pane fade in active">
+    </div> 
+  </div>
+  {% load static %}
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+  <script type="text/javascript" src="{% static 'marketgrowth/js/angularjs-dropdown-multiselect.js' %}"></script>
+  <script src="{% static 'marketgrowth/js/demo.js' %}"></script>
+</body>
+
+</html>

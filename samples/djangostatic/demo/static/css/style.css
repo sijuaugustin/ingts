@@ -1,0 +1,234 @@
+body {
+		background-image: url(http://static.livedemo00.template-help.com/wt_58725/images/slider-01.jpg);
+		background-size: cover;
+		background-position: center;
+		height:auto;
+		min-height:100%;
+	}
+	 .raphael-group-128-creditgroup{
+		display:none;
+	 }
+	 #total_price {
+	    width:69%;
+	    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.39);
+	    color: black;
+	    border-radius: 4px;
+	    margin-top: 10px;
+	    padding-top: 30px;
+	    padding-bottom: 10px;
+	    background-color: rgb(255, 255, 255);
+	    margin-left: 30px;
+	    float: left;
+	    height:500px;
+	}
+	#average_price{
+		width: 65%;
+		box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.39);
+		color: black;
+		border-radius: 4px;
+		margin-top: 10px;
+		padding-top: 30px;
+		padding-bottom: 30px;
+		background-color: rgb(255, 255, 255);
+		margin-left: 30px;
+		float: left;
+		height: 450px;
+	}
+	.raphael-group-82-creditgroup{
+		display:none;
+	}
+	.raphael-group-166-creditgroup{
+		display:none;
+	}
+	.highcharts-credits{
+		display:none;
+	}
+	.raphael-group-176-creditgroup{
+		display:none;
+	}
+	
+   #list_price_share{
+		width: 30%;
+		float: left;
+		height: 450px;
+		margin-left: 20px;
+		margin-top: 10px;
+		border-radius: 10px;
+	}
+	 #sold_price_share{
+		width: 35%;
+		float: left;
+		height: 450px;
+		margin-left: 21px;
+		margin-top: 10px;
+		border-radius: 10px;
+	}
+	 .container{
+		width: 22%;
+		height: 170px;
+		box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.5);
+		border-radius: 4px;
+		margin-top: 10px;
+		background-color: rgba(0,0,0,0.5);
+		font-family: roboto;
+		color: #fff;
+		float: left;
+		margin-left: 30px;
+		overflow: hidden;
+	}
+	.col-12 {
+		width: 20%;
+		float: left;
+		margin-bottom: 12px;
+		margin-left: 5px;
+		font-size: 13px;
+		padding: 5px;
+	}
+	.col-10 {
+	
+margin-bottom: 12px;
+	
+margin-left: 5px;
+	
+font-size: 13px;
+	
+padding: 5px;
+	
+float: left;
+	
+}
+		.raphael-group-113-columns rect {
+			width: 24px;
+		}
+		.raphael-group-98-columns rect {
+			width: 24px;
+		}
+		.raphael-group-125-creditgroup{
+			display:none;
+		}
+		.title {
+			font-size: 40px;
+			color : #fff;
+			font-family: roboto;
+			text-align: center;
+			margin-top: 10px;
+			font-weight: 300;
+		}
+
+		.subtitle {
+			font-size: 22px;
+			color: #fff;
+			font-family: roboto;
+			text-align: center;
+			font-weight: 300;
+		}
+		.mlsTitle {
+    font-size: 20px;
+    color: #fff;
+    font-family: roboto;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-transform: capitalize;
+    font-weight: 300;
+    float: left;
+    width: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    position: relative;
+    padding: 0px 15px;
+    line-height: 35px;
+    height: 35px;
+}
+.col-3 {
+    float: left;
+    width: calc(100% - 11px);
+    padding: 0px 0px 0px 15px;
+    font-size: 14px;
+    font-weight: 300;
+    margin-bottom: 18px;
+}
+
+.row {
+    width: 100%;
+    float: left;
+}
+.context {
+    float: left;
+    padding: 0px;
+    font-weight: 600;
+    line-height: 20px;
+    color: orange;
+    width: 52%;
+}
+
+.content {
+    float: left;
+    line-height: 20px;
+    font-size: 13px;
+    width: 40%;
+    margin-left: 15px;
+    color: #000;
+}
+.mlsContainer {
+    float: left;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    width: calc(100% - 30px);
+    margin-left: 15px;
+    padding-bottom: 15px;
+    margin-top: 30px;
+}
+.pptyContainer {
+    float: left;
+    width: calc(100% - 30px);
+    margin-left: 15px;
+    margin-top: 30px;
+}
+.raphael-group-7-background>rect {
+    fill: rgba(152, 36, 36, 0) !important;
+}
+
+svg#raphael-paper-5 {
+    background-color: rgba(255, 255, 255, 0) !important;
+}
+.raphael-group-8-canvas rect {
+    fill: rgba(255, 255, 255, 0) !important;
+}
+.raphael-group-123-creditgroup tspan {
+    display: none;
+}
+.content select{
+	border-radius:5px;
+	width: 125px;
+}
+.submit{
+    margin-top: 20px;
+    text-align: center;
+    margin-left: 10%;
+    color: #000;
+    width: 42%;
+    background-color: rgba(76, 175, 80, 0.52);
+    border-radius: 5px;
+    height: auto;
+    padding: 5px;
+    cursor: pointer;
+}
+a {
+    color: #fff;
+    text-decoration: none;
+}
+#average_price g.highcharts-legend-item.highcharts-column-series {
+    display: none;
+}
+div#average_price:after {
+    content: "Agent Names";
+    position: relative;
+    bottom: 5px;
+    font-size: 13px;
+    color: #82afe0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.raphael-group-576-creditgroup{
+	display: none;
+}
